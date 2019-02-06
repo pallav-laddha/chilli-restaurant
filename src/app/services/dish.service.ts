@@ -9,9 +9,7 @@ import { DISHES } from '../shared/dishes';
 export class DishService {
 
   constructor() { }
-  getDishes(): Dish[] {
-   return DISHES;
- }
+
  getDishes(): Promise<Dish[]> {
     return new Promise(resolve=> {
       // Simulate server latency with 2 second delay
