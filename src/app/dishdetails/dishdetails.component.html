@@ -43,15 +43,15 @@
         </mat-list-item>
       </mat-list>
 
-        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
 
             <p>
-            <mat-list *ngIf="feedbackForm.valid">
+            <mat-list *ngIf="commentForm.valid">
 
                 <mat-list-item>
-                  <h4 matLine> {{feedbackForm.get('comment').value}} </h4>
-                      <p matLine> {{feedbackForm.get('rating').value}} Stars </p>
-                      <p matLine><span>-- {{feedbackForm.get('author').value}}</span>
+                  <h4 matLine> {{commentForm.get('comment').value}} </h4>
+                      <p matLine> {{commentForm.get('rating').value}} Stars </p>
+                      <p matLine><span>-- {{commentForm.get('author').value}}</span>
                       </p>
                 </mat-list-item>
              </mat-list>
@@ -60,18 +60,16 @@
              <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
             </mat-form-field>
           </p>
-          <table>
-            <td>
-              <mat-slider min="1" max="5" step="1" value="5" thumbLabel tickInterval="1"  formControlName="rating"></mat-slider>
-            </td>
-          </table>
+          <p>
+            <mat-slider formcontrolname="rating"  thumblabel tickinterval="1" min="1" max="5" value="5"></mat-slider>
+         </p>
           <p>
             <mat-form-field class="full-width">
               <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
                <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
             </mat-form-field>
           </p>
-          <button type="submit" mat-button  [disabled]="feedbackForm.invalid" class="background-primary text-floral-white">Submit</button>
+          <button type="submit" mat-button  [disabled]="commentForm.invalid" class="background-primary text-floral-white">Submit</button>
         </form>
 
   </div>

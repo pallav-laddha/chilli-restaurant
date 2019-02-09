@@ -30,12 +30,12 @@ export class DishdetailsComponent implements OnInit {
     },
   };
 
-  @ViewChild('fform') feedbackFormDirective;
+  @ViewChild('cform') commentFormDirective;
   dish: Dish;
   dishIds: string[];
   prev: string;
   next: string;
-  feedbackForm: FormGroup;
+  commentForm: FormGroup;
   comment: Comment;
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
@@ -56,22 +56,22 @@ export class DishdetailsComponent implements OnInit {
     this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }
   createForm() {
-    this.feedbackForm = this.fb.group({
-      rating: 5,
+    this.commentForm = this.fb.group({
+      rating: [5],
       comment:['', [Validators.required] ],
       author: ['', [Validators.required, Validators.minLength(2)] ],
       date: ''
     });
 
-    this.feedbackForm.valueChanges
+    this.commentForm.valueChanges
     .subscribe(data => this.onValueChanged(data));
 
    this.onValueChanged(); // (re)set validation messages now
   }
 
   onValueChanged(data?: any) {
-  if (!this.feedbackForm) { return; }
-  const form = this.feedbackForm;
+  if (!this.commentForm) { return; }
+  const form = this.commentForm;
   for (const field in this.formErrors) {
     if (this.formErrors.hasOwnProperty(field)) {
       // clear previous error message (if any)
@@ -89,17 +89,17 @@ export class DishdetailsComponent implements OnInit {
   }
 }
 onSubmit() {
-  this.comment = this.feedbackForm.value;
+  this.comment = this.commentForm.value;
   var d = new Date();
   this.comment.date =d.toISOString();
   this.dish.comments.push(this.comment);
-  this.feedbackForm.reset({
+  this.commentForm.reset({
     rating: 5,
     comment:'',
     author: '',
     date: ''
   });
-  this.feedbackFormDirective.resetForm();
+  this.commentFormDirective.resetForm();
 }
   goBack(): void {
     this.location.back();
