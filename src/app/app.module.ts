@@ -38,6 +38,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
+
+
 
 @NgModule({
   declarations: [
@@ -70,12 +75,15 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSelectModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpModule,
+    HttpClientModule
   ],
     providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
     entryComponents: [
        LoginComponent
