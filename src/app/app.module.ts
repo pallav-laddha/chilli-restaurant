@@ -42,6 +42,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
+import { HiglightDirective } from './directives/higlight.directive';
 
 
 
@@ -55,7 +56,8 @@ import { baseURL } from './shared/baseurl';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HiglightDirective
   ],
   imports: [
     BrowserModule,
